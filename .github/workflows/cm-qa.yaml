@@ -6,31 +6,25 @@ on:
       REPO:
         description: "Specify Tenant"
         required: true
-
 jobs:
   subtree_to_aem_main:
     runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          repository: https://github.com/Swa-DevOps/CM-AEM-MAIN.git
+          ref: refs/heads/cm/qa 
 
-      - name: Subtree split
+      - name: adding tenant repo
         run: |
-          # Perform subtree split to extract the relevant directory
-          git subtree add --prefix=tonomus1
-          git subtree split --prefix=tonomus1 -b temp_branch
+          git remote add tonomus https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git cm/qa
+          git fetch tonomus
 
-      - name: Clone AEM Main Repo
+      - name: Subtree
         run: |
-          git clone -b cm/qa https://github.com/Swa-DevOps/CM-AEM-MAIN.git
-          cd CM-AEM-MAIN
-          git checkout cm/qa
-
-      - name: Merge changes
-        run: |
-          # Merge changes from the temporary branch
-          git pull ../ temp_branch
+          git subtree add --prefix=tonomus https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git cm/qa
 
       - name: Push changes to AEM Main Repo
         run: |
-          git push origin cm/qa
+          git push https://github.com/Swa-DevOps/CM-AEM-MAIN.git cm/qa
