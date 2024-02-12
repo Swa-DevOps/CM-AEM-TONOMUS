@@ -13,18 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          repository: Swa-DevOps/https://github.com/Swa-DevOps/CM-AEM-MAIN.git
+          repository: https://github.com/Swa-DevOps/CM-AEM-MAIN.git
           ref: refs/heads/cm/qa 
 
       - name: adding tenant repo
         run: |
-          git remote add tonomus https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git cm/qa
+          git remote add tonomus https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git -t cm/qa
           git fetch tonomus
 
       - name: Subtree
         run: |
-          git subtree add --prefix=tonomus https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git cm/qa
+          git subtree add --prefix=tonomus https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git -t  cm/qa
 
       - name: Push changes to AEM Main Repo
         run: |
-          git push https://github.com/Swa-DevOps/CM-AEM-MAIN.git cm/qa
+          git push https://github.com/Swa-DevOps/CM-AEM-MAIN.git -t cm/qa
