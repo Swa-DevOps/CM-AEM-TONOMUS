@@ -17,6 +17,7 @@ jobs:
       - name: Subtree split
         run: |
           # Perform subtree split to extract the relevant directory
+          git subtree add tonomus1
           git subtree split --prefix=tonomus1 -b temp_branch
 
       - name: Clone AEM Main Repo
