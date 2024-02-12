@@ -16,6 +16,8 @@ jobs:
 
       - name: adding tenant repo
         run: |
+          git init
+          echo $REPO
           git remote add $REPO https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git HEAD:cm/qa
           git fetch $REPO
 
