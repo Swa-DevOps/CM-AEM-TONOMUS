@@ -18,13 +18,13 @@ jobs:
 
       - name: adding tenant repo
         run: |
-          git remote add tonomus https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git -t cm/qa
+          git remote add tonomus https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git -b cm/qa
           git fetch tonomus
 
       - name: Subtree
         run: |
-          git subtree add --prefix=tonomus https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git -t  cm/qa
+          git subtree add --prefix=tonomus https://github.com/Swa-DevOps/CM-AEM-TONOMUS.git -b  cm/qa
 
       - name: Push changes to AEM Main Repo
         run: |
-          git push https://github.com/Swa-DevOps/CM-AEM-MAIN.git -t cm/qa
+          git push https://github.com/Swa-DevOps/CM-AEM-MAIN.git -b cm/qa
