@@ -1,13 +1,11 @@
 name: Subtree to AEM Main Repo
 
 on:
-  pull_request:
-    branches: [cm/qa]
-
-inputs:
-  REPO:
-    description: "Specify Tenant"
-    required: true
+  workflow_dispatch:
+    inputs:
+      REPO:
+        description: "Specify Tenant"
+        required: true
 
 jobs:
   subtree_to_aem_main:
