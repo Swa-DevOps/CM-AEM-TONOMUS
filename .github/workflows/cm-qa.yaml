@@ -1,9 +1,8 @@
 name: Subtree to AEM Main Repo
 
 on:
-  push:
-    branches:
-      - cm/qa
+  pull_request:
+    branches: [cm/qa]
 
 inputs:
   REPO:
